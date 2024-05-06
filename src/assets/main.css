@@ -1,0 +1,9 @@
+#app {
+  margin: 2rem;
+}
+
+.chart-container {
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+}
