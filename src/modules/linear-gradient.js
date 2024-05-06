@@ -1,6 +1,7 @@
 function getGradient(chart, treshold) {
   const gradient = createLinearGradient(chart);
-  return addGradientColorStops(chart, treshold, gradient);
+  addGradientColorStops(chart, treshold, gradient);
+  return gradient;
 }
 
 function createLinearGradient(chart) {
@@ -29,8 +30,6 @@ function addGradientColorStops(chart, treshold, gradient) {
   gradient.addColorStop(tresholdStop, gray);
   gradient.addColorStop(tresholdStop, red);
   gradient.addColorStop(gradientEnd, red);
-
-  return gradient;
 }
 
 function getTresholdStop(chart, treshold) {

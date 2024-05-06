@@ -42,7 +42,6 @@ function getChartConfiguration() {
     },
     options: {
       maintainAspectRatio: false,
-
       scales: {
         y: { beginAtZero: true },
       },
