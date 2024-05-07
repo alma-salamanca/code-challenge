@@ -7,17 +7,19 @@ const props = defineProps({
   title: String,
   months: Array,
   complaints: Array,
-  treshold: Number,
+  initialTreshold: Number,
 });
 
-const myChart = ref();
+var treshold = props.initialTreshold;
+const canvas = ref();
+let chart = null;
 
 onMounted(() => {
   createChart();
 });
 
 function createChart() {
-  new Chart(myChart.value, getChartConfiguration());
+  chart = new Chart(canvas.value, getChartConfiguration());
 }
 
 function getChartConfiguration() {
@@ -34,8 +36,7 @@ function getChartConfiguration() {
           pointBackgroundColor: red,
           borderColor: red,
           backgroundColor: function (context) {
-            const chart = context.chart;
-            return getGradient(chart, props.treshold);
+            return getGradient(context.chart, treshold);
           },
         },
       ],
@@ -50,10 +51,17 @@ function getChartConfiguration() {
 
   return config;
 }
+
+function updateChart(updatedTreshold) {
+  treshold = updatedTreshold;
+  chart.update();
+}
+
+defineExpose({ updateChart });
 </script>
 
 <template>
   <div class="chart-container">
-    <canvas id="myChart" ref="myChart"></canvas>
+    <canvas id="canvas" ref="canvas"></canvas>
   </div>
 </template>
